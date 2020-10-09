@@ -10,6 +10,7 @@
                     <p>{{ task.name }}</p>
                     <!-- Lien pour mettre à jour une tâche -->
                     <a href="{{ url_for('update', id=task.id) }}">Update</a>
+                    <a href="{{ url_for('delete', id=task.id) }}">Delete</a>
                 </div>
             {%endfor %}
         {% else %}
