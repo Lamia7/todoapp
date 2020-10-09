@@ -27,11 +27,21 @@ def index():  # Vue dans laquel on traite les données du formulaire
 
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
-def update():
+def update(id):
     task = Task.query.get_or_404(id)  # on récupère la tâche dans notre bdd grâce à l'id
-    if request.method == 'UPDATE':
+    if request.method == 'POST':
         task.name = request.form.get('name')  # on màj le nom de la tâche avec les données reçues du formulaire
         db.session.commit()
         return redirect(url_for('index'))
     else:
-        return render_template('index.html', task=task)
+        return render_template('update.html', task=task)
+
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    task = Task.query.get_or_404(id)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
