@@ -1,0 +1,27 @@
+<!-- todo_app/templates/index.html -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+
+<body>
+<main>
+    <div id="tasks">
+        {% if tasks %}
+            {% for task in tasks %}
+                <div id="task">
+                    <p>{{ task.name }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="font-size: 16px; text-align: center;">Super, vous n'avez plus rien à faire ✌️</p>
+        {% endif %}
+    </div>
+</main>
+</body>
+
+</html>
