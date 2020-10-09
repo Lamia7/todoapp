@@ -1,25 +1,15 @@
 <!-- todo_app/templates/index.html -->
-
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
-</head>
-
-<body>
+{% extends 'base.html' %}  <!-- hériter du template base.html -->
+{% block main %}
 <main>
-    <form action="{{ url_for('index') }}" , method="POST">
-        <input type="text" name="name" id="task" placeholder="Faire les courses...">
-        <input type="submit" value="Add">
-    </form>
+    {% include './partials/_form.html' %}  <!-- inclure ici fichier: /partials/_form.html -->
     <div id="tasks">
         {% if tasks %}
             {% for task in tasks %}
                 <div id="task">
                     <p>{{ task.name }}</p>
+                    <!-- Lien pour mettre à jour une tâche -->
+                    <a href="{{ url_for('update', id=task.id) }}">Update</a>
                 </div>
             {%endfor %}
         {% else %}
@@ -27,6 +17,4 @@
         {% endif %}
     </div>
 </main>
-</body>
-
-</html>
+{% endblock main %}
